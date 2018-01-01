@@ -14,7 +14,7 @@
     startBtn.addEventListener('click', onStart, false)
     main.addEventListener('click', onClick, false)
 
-    // 开始play
+    // play
     function onStart () {
       if (!isStart) {
         socket.on('response', function (imageName) {

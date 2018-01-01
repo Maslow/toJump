@@ -9,7 +9,7 @@ const app = express()
 const config = require('./config')
 
 const PUBLIC_PATH = path.join(__dirname, 'public')
-const ADB_PATH = path.join(__dirname, 'lib/adb/adb.exe')
+const ADB_PATH = path.join(__dirname, 'adb/adb.exe')
 const SCREEN_SHOT_PATH = path.join(PUBLIC_PATH, 'img/screenshot')
 
 app.use('/', express.static(PUBLIC_PATH))
@@ -20,9 +20,6 @@ server.listen(config.port)
 server.on('error', onError)
 server.on('listening', onListening)
 
-// const io = require('socket.io')(server, {
-//   path: '/socket/queue'
-// })
 const io = require('socket.io')(server)
 io.on('connection', function (socket) {
   console.log('已连接...')
@@ -77,7 +74,7 @@ function runCmd (cmd) {
       maxBuffer: 1000 * 1024
     }, function (err, stdout, stderr) {
       if (err) {
-        // console.log(err)
+        console.log(err)
         reject(err)
       } else {
         resolve(stdout)
